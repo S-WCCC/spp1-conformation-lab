@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f5f5ef"><title>SPP1 构象观察台 · 构象实验室</title><link rel="stylesheet" href="style.css"><script defer src="app.js"></script></head>
+<body><header><div class="headwrap"><a class="brand" href="#top"><span class="brandmark" aria-hidden="true">∿</span>构象实验室</a><nav aria-label="页内导航"><a href="#observe">观察台</a><a href="#record">计算记录</a><a href="#method">方法说明</a></nav><span class="site-mode" id="siteMode">展示模式</span></div></header>
+<main id="top">
+<section class="intro"><p class="breadcrumb">无序蛋白设计 <span>/</span> 路线四</p><h1><span>SPP1</span> 构象观察台</h1><p class="lede">固定游离 SPP1 的一个构象，看看同一只 Fab115 放上去之后，原来的结合姿势还有多少空间。</p></section>
+<section class="workbench" id="observe" aria-label="结构观察台">
+  <article class="viewer"><div class="viewhead"><div><div class="viewtag"><i></i> 结构视图</div><h2 id="viewtitle">构象 B 与 Fab115</h2></div><span class="ca">Cα 主链</span></div>
+  <div class="stage" id="stage"><canvas id="mol" width="640" height="440" tabindex="0" aria-label="可旋转的结构图，按左右方向键旋转">结构视图</canvas><span id="loading" role="status">正在载入实跑结构…</span></div>
+  <div class="legend" id="legend"></div><div class="vtools"><button class="icon" id="play" aria-label="播放旋转" title="播放旋转">▶</button><label for="angle">旋转</label><input id="angle" type="range" min="0" max="23" value="0" aria-label="旋转角度"><output id="degrees">0°</output><button class="icon" id="reset" title="复位视角" aria-label="复位视角">↺</button></div></article>
+  <aside class="settings"><h2>观察设置</h2><fieldset><legend>选择构象 B</legend><div class="samples" id="frames"></div><p id="sampleNote" class="muted">正在读取几何检查记录…</p></fieldset>
+  <fieldset><legend>显示内容</legend><div id="modes" class="modes"><button data-mode="b" aria-pressed="false"><b class="radio"></b>游离 SPP1</button><button data-mode="fab" aria-pressed="true"><b class="radio"></b>叠入同一只 Fab115</button><button data-mode="local" aria-pressed="false"><b class="radio"></b>放大靶段 T143–152</button></div></fieldset>
+  <div id="downloads" hidden><a id="getB">下载构象 B</a><a id="getFab">下载叠合 PDB</a></div>
+  <div class="observe-note"><span>配准锚点</span><strong>T143–147</strong><span>独立检查窗</span><strong>T148–152</strong></div></aside>
+</section>
+<section class="lower"><article class="measure"><span class="subtle">局部观察</span><h2>T150 到 Fab 的最近距离</h2><p>比较两条链上最近的 Cα。A 取自原复合物，B 采用当前选中的游离构象。</p><div class="readings"><div><span>原姿势 A</span><strong id="distA">—</strong> Å</div><div><span>叠合到 B</span><strong id="distB">—</strong> Å</div></div><p class="interpret" id="interpret" aria-live="polite"></p></article>
+<article id="record" class="record"><span class="subtle">实跑记录</span><h2>苏州集群采样</h2><dl><dt>模型</dt><dd>BioEmu-2</dd><dt>计算设备</dt><dd id="device">—</dd><dt>随机种子 / 帧数</dt><dd id="runInfo">—</dd><dt>Slurm 作业</dt><dd id="job">—</dd></dl></article></section>
+<section id="teacher" class="teacher" hidden><h2>在苏州重新采样</h2><p>使用同一条成熟 SPP1 序列，每次采样 3 帧。计算完成后可切换到新结果。</p><form id="runform"><label>随机种子 <input type="number" id="seed" value="43" min="0" max="2147483647" required></label><button class="primary" type="submit">提交 GPU 作业</button></form><p id="submitNote" role="status"></p><div id="runs"></div></section>
+<section id="method" class="method"><h2>这个视图是怎么得到的？</h2><div class="steps"><article><h3>生成游离构象</h3><p>BioEmu-2 只接收成熟 SPP1 的 298 个残基，使用单序列比对。视图展示通过几何检查的样本。</p></article><article><h3>把原姿势移到 B</h3><p>将原复合物上 T143–147 的五个 Cα 与 B 对齐，对 Fab 重链、轻链施加同一个刚体变换。B 始终固定。</p></article><article><h3>检查剩余空间</h3><p>观察留出的 T148–152。穿插提示原姿势有空间冲突。Fab 是否能调整姿势并识别 B，仍需独立证据。</p></article></div><a href="https://github.com/microsoft/bioemu2">BioEmu-2 官方代码 ↗</a></section>
+</main><footer><span>构象实验室 · SPP1 教学案例</span><a href="https://github.com/S-WCCC/spp1-conformation-lab">GitHub 展示项目 ↗</a></footer></body></html>
